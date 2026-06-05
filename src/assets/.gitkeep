@@ -1,0 +1,2 @@
+# Static assets imported by components (images, fonts, illustrations) live here.
+# Files placed under public/ are served as-is; files here are processed by Vite.

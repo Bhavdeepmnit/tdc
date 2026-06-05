@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Global base styles ──────────────────────────────────────────────── */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface-bg font-sans text-body text-text-primary antialiased;
+    /* Prevent horizontal scroll from sticky/fixed nav on small screens. */
+    overflow-x: hidden;
+  }
+
+  /* Headings default to the display serif. */
+  h1,
+  h2 {
+    @apply font-display;
+  }
+
+  /* Visible focus ring for keyboard users (WCAG 2.4.7). Components that render
+     their own ring set `focus:outline-none` and are unaffected; everything else
+     (cards, chips, nav links) gets this brand outline fallback. */
+  :focus-visible {
+    outline: 2px solid #9b1b30;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* ── Reusable component classes ─────────────────────────────────────── */
+@layer components {
+  /* Text input used across forms (login, notes). */
+  .input-field {
+    @apply h-11 w-full rounded-lg border border-surface-divider bg-surface-card px-3 text-body
+      text-text-primary placeholder:text-text-disabled
+      focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-100;
+  }
+
+  /* Bottom-anchored sticky action bar on mobile (thumb-zone CTAs). */
+  .sticky-action-bar {
+    @apply fixed inset-x-0 bottom-0 z-30 border-t border-surface-divider bg-surface-card p-xs
+      pb-[calc(env(safe-area-inset-bottom)+0.75rem)] md:hidden;
+  }
+}
+
+/* Utility: visually hidden but accessible to screen readers. */
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
